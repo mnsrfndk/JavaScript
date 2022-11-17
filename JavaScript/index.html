@@ -1,20 +1,43 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saat ve Tarih</title>
-  <link rel="stylesheet" href="index.css">
-</head>
-<body style="background-color: rgb(71, 71, 71);">
-  <header style="color: orange;" class="text-size">
-    <img class="center" src="https://cdn.sanity.io/images/9kdepi1d/production/65c832d202a503b15d99e628f4313782f3ef50db-300x62.png" alt="">
-    <p class="text-center">Merhaba, <strong><span id="name">isim</span>!</strong> Hoş geldin!</p>
-    <p  class="text-center"><span id="time">Saat</span>  <span id="date">Gün</span></p>
-    <p  class="text-center">tarihinde <strong>Kodluyoruz Frontend Web Development Patikası</strong>'nın Javascript bölümü 1. Ödevindesiniz.</p>
-  </header>
+let info = document.querySelector("#name");
 
-  <script src="main.js"></script>
-</body>
-</html>
+const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+const d = new Date();
+let day = weekday[d.getDay()];
+
+let dayInfo = document.querySelector("#date");
+dayInfo.innerHTML = day;
+
+setInterval(showTime, 1000);
+function showTime() {
+    let time = new Date();
+    let hour = time.getHours();
+    let min = time.getMinutes();
+    let sec = time.getSeconds();
+    am_pm = "AM";
+
+    if (hour > 12) {
+        hour -= 12;
+        am_pm = "PM";
+    }
+    if (hour == 0) {
+        hr = 12;
+        am_pm = "AM";
+    }
+
+    hour = hour < 10 ? "0" + hour : hour;
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
+
+    let currentTime = hour + ":"
+        + min + ":" + sec + am_pm;
+
+    document.getElementById("clock")
+        .innerHTML = currentTime;
+}
+
+showTime(); 
+let input = prompt("İsminizi Giriniz: ")
+
+
+info.innerHTML = input;
